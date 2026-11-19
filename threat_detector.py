@@ -7,6 +7,17 @@ THREATS = {
     "ddos": "Possible DDoS attack detected",
 }
 
+def get_risk_level(traffic):
+    if traffic == "normal":
+        return "LOW"
+    elif traffic == "port_scan":
+        return "MEDIUM"
+    elif traffic in ["brute_force", "ddos"]:
+        return "HIGH"
+    else:
+        return "UNKNOWN"
+
+
 def analyze_traffic():
     """Simulate network traffic and detect suspicious behavior."""
     traffic_types = ["normal", "normal", "normal", "port_scan",
@@ -14,15 +25,9 @@ def analyze_traffic():
 
     traffic = random.choice(traffic_types)
 
-    print(f"\nTraffic analysis result:")
+    print("\nTraffic analysis result:")
     print(f"Status: {THREATS[traffic]}")
-
-    if traffic == "normal":
-        print("Risk Level: LOW")
-    elif traffic == "port_scan":
-        print("Risk Level: MEDIUM")
-    else:
-        print("Risk Level: HIGH")
+    print(f"Risk Level: {get_risk_level(traffic)}")
 
 
 if __name__ == "__main__":
