@@ -1,4 +1,5 @@
 import random
+from datetime import datetime
 
 THREATS = {
     "normal": "Normal traffic",
@@ -24,10 +25,17 @@ def analyze_traffic():
                      "brute_force", "ddos"]
 
     traffic = random.choice(traffic_types)
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    print("\nTraffic analysis result:")
-    print(f"Status: {THREATS[traffic]}")
-    print(f"Risk Level: {get_risk_level(traffic)}")
+    print("\n" + "=" * 40)
+    print("       NETWORK THREAT ANALYSIS")
+    print("=" * 40)
+    print(f"Timestamp: {timestamp}")
+    
+    print(f"Traffic Type : {traffic.upper()}")
+    print(f"Status       : {THREATS[traffic]}")
+    print(f"Risk Level   : {get_risk_level(traffic)}")
+    print("=" * 40)
 
 
 if __name__ == "__main__":
